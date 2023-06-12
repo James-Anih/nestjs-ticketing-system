@@ -45,6 +45,9 @@ $ npm run test:cov
 - for the purpose of the assessment a test mongodb url has been created
 - mongodb+srv://root:root@cluster0.xvndune.mongodb.net/fincra
 
+## Documentation
+- Project Documentation can be accessed using the state link - https://documenter.getpostman.com/view/25552330/2s93sdXr8G
+
 
 ## Stay in touch
 
