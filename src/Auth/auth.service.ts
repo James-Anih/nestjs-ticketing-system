@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
-import { Agent } from 'http';
 import mongoose, { Model } from 'mongoose';
-import { AgentDocument } from '../Agent/schema/agent.schema';
+import { Agent, AgentDocument } from '../Agent/schema/agent.schema';
 import { Customer, CustomerDocument } from '../Customer/schema/customer.schema';
 import { LoginDTO } from './dto/login.dto';
 import { compare } from 'bcrypt';

@@ -1,12 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class LoginDTO {
-  @IsString()
+export class TicketDTO {
   @IsNotEmpty()
-  email: string;
+  @IsString()
+  subject: string;
 
-  @IsString()
   @IsNotEmpty()
-  password: string;
+  @IsString()
+  description: string;
+
+  @IsNotEmpty()
+  @IsString()
+  customer: string;
 }

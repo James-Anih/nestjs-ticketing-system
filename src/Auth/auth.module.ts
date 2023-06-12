@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Agent } from 'http';
-import { AgentSchema } from '../Agent/schema/agent.schema';
+import { Agent, AgentSchema } from '../Agent/schema/agent.schema';
 import { Customer, CustomerSchema } from '../Customer/schema/customer.schema';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';

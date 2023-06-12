@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
@@ -10,7 +11,7 @@ import { JwtObjectType } from '../auth.service';
 
 @Injectable()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export class AgentStrategy extends PassportStrategy(Strategy, 'jwt') {
+export class AgentStrategy extends PassportStrategy(Strategy, 'agent') {
   constructor(@InjectModel(Agent.name) private agentModel: Model<AgentDocument>, config: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

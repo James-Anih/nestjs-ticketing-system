@@ -12,6 +12,10 @@ export const createDataResponse = async (model: Model<any>, dataDto: any, title 
   try {
     const _data = await model.create(dataDto);
     const { ...data } = _data.toObject();
+    if (data.password) {
+      delete data.password;
+    }
+
     return {
       error: false,
       message: `${title} creation Success!`,
@@ -48,5 +52,16 @@ export const sendResponse = async (statusCode: number, data: any, message?: stri
     message: message || 'success!',
     statusCode,
     data,
+  };
+};
+
+export const catchReturnError = (error: any) => {
+  const errorMsg = error.response.message || error.response.data.verified || 'An error occurred';
+  const statusCode = error.response.statusCode || error.response.status || 500;
+  return {
+    message: errorMsg,
+    statusCode,
+    error: true,
+    data: '',
   };
 };
