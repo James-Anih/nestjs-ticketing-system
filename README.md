@@ -48,6 +48,10 @@ $ npm run test:cov
 ## Documentation
 - Project Documentation can be accessed using the state link - https://documenter.getpostman.com/view/25552330/2s93sdXr8G
 
+## Assumptions Made
+- The have assumed the support system would allow agents attend to a single support request as long as the request is still been processed(open)
+- I also added an endpoint for customer to view a particular support request created alongside all its comments
+
 
 ## Stay in touch
 
