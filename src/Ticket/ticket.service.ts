@@ -109,8 +109,16 @@ export class TicketService {
   }
 
   async findTicket(ticketId: string) {
-    const ticket = await this.ticketModel.findById(ticketId).populate('comment');
-    return sendResponse(200, ticket);
+    const ticket = await this.ticketModel.findById(ticketId);
+    if (!ticket) {
+      throw new BadRequestException('Ticket not found');
+    }
+    const comments = await this.commentModel
+      .find({
+        ticket: ticket._id,
+      })
+      .populate('agent', 'firstName');
+    return sendResponse(200, { ...ticket.toObject(), comments });
   }
 
   async updateTicketStatus(ticketId: string, agentId: string, status: string) {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { customerDTO } from './dto/createCustomer.dto';
 import { commentOnSupportRequestDTO, supportRequestDTO } from './dto/createSupportRequest.dto';
@@ -36,5 +36,11 @@ export class CustomerController {
   async comment(@Body() params: commentOnSupportRequestDTO, @Req() req: Request) {
     const authCustomer: any = req.user;
     return this.service.commentOnSupportRequest(params, authCustomer._id);
+  }
+
+  @UseGuards(AuthGuard('customer'))
+  @Get('/support_request/find/:id')
+  async findSupportRequest(@Param('id') id: string) {
+    return this.service.fetchSupportRequest(id);
   }
 }
