@@ -50,7 +50,8 @@ $ npm run test:cov
 
 ## Assumptions Made
 - The have assumed the support system would allow agents attend to a single support request as long as the request is still been processed(open)
-- I also added an endpoint for customer to view a particular support request created alongside all its comments
+- I also added an endpoint for customer to view a particular support request created alongside all its comments.
+- I assumed the export as PDF or CSV would be handled on the frontend,so i created an enpoint returning the neccessary data need
 
 
 ## Stay in touch
