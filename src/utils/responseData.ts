@@ -56,6 +56,7 @@ export const sendResponse = async (statusCode: number, data: any, message?: stri
 };
 
 export const catchReturnError = (error: any) => {
+  console.log('error', error);
   const errorMsg = error.response.message || error.response.data.verified || 'An error occurred';
   const statusCode = error.response.statusCode || error.response.status || 500;
   return {

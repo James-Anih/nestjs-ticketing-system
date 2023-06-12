@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { AgentService } from './agent.service';
 import { createAgentDTO } from '../Agent/dto/createAgent.dto';
 import { AgentAuthGuard } from '../Auth/guards/agent-auth.guard';
@@ -33,5 +33,18 @@ export class AgentController {
   async comment(@Body() params: commentOnSupportRequestDTO, @Req() req: Request) {
     const authAgent: any = req.user;
     return this.service.comment(params, authAgent._id);
+  }
+
+  @UseGuards(AuthGuard('agent'))
+  @Get('/support_request/close/:id')
+  async closeSupportRequest(@Param('id') id: string, @Req() req: Request) {
+    const authAgent: any = req.user;
+    return this.service.markSupportRequestAsClose(id, authAgent._id);
+  }
+
+  @UseGuards(AuthGuard('agent'))
+  @Get('/support_request/report')
+  async supportRequestReport() {
+    return this.service.closedTicketReport();
   }
 }

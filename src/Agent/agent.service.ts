@@ -67,4 +67,7 @@ export class AgentService {
   }
 
   // generate report for closed tickets in last one month
+  async closedTicketReport() {
+    return await this.ticketservice.ticketReport();
+  }
 }

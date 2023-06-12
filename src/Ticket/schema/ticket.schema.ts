@@ -26,6 +26,9 @@ export class Ticket {
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Agent' })
   closedBy: string;
+
+  @Prop({ type: Date })
+  closureDate: Date;
 }
 
 export const TicketSchema = SchemaFactory.createForClass(Ticket);

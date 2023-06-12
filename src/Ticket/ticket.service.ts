@@ -121,9 +121,100 @@ export class TicketService {
       }
       ticket.status = status;
       ticket.closedBy = agentId;
+      ticket.closureDate = new Date();
       ticket.save();
 
       return sendResponse(200, ticket);
+    } catch (error) {
+      return catchReturnError(error);
+    }
+  }
+
+  async ticketReport() {
+    try {
+      const tickets = await this.ticketModel.aggregate([
+        {
+          $match: {
+            $expr: {
+              $and: [
+                {
+                  $eq: [
+                    {
+                      $month: '$closureDate',
+                    },
+                    {
+                      $month: {
+                        $dateAdd: {
+                          startDate: new Date(),
+                          unit: 'month',
+                          amount: -1,
+                        },
+                      },
+                    },
+                  ],
+                },
+                {
+                  $eq: [
+                    {
+                      $year: '$closureDate',
+                    },
+                    {
+                      $year: {
+                        $dateAdd: {
+                          startDate: new Date(),
+                          unit: 'month',
+                          amount: -1,
+                        },
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: 'customers',
+            localField: 'customer',
+            foreignField: '_id',
+            as: 'customer',
+          },
+        },
+        {
+          $unwind: {
+            path: '$customer',
+          },
+        },
+        {
+          $lookup: {
+            from: 'agents',
+            localField: 'closedBy',
+            foreignField: '_id',
+            as: 'closedBy',
+          },
+        },
+        {
+          $unwind: {
+            path: '$closedBy',
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            'customer.firstName': 1,
+            'customer.lastName': 1,
+            subject: 1,
+            description: 1,
+            priority: 1,
+            status: 1,
+            'closedBy.firstName': 1,
+            'closedBy.lastName': 1,
+            closureDate: 1,
+          },
+        },
+      ]);
+      return sendResponse(200, tickets);
     } catch (error) {
       return catchReturnError(error);
     }
