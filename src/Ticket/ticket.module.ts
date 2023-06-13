@@ -3,7 +3,7 @@ import { MongooseModule, Schema } from '@nestjs/mongoose';
 import { Module } from '@nestjs/common';
 import { Ticket, TicketSchema } from './schema/ticket.schema';
 import { TicketService } from './ticket.service';
-import { TicketController } from './ticket.controller';
+//import { TicketController } from './ticket.controller';
 import { Comments, CommentSchema } from './schema/ticket_comments.schema';
 
 @Module({
@@ -14,7 +14,7 @@ import { Comments, CommentSchema } from './schema/ticket_comments.schema';
     ]),
   ],
   providers: [TicketService],
-  controllers: [TicketController],
+  //controllers: [],
   exports: [TicketService],
 })
 export class TicketModule {}

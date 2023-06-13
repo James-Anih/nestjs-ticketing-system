@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AgentService } from '../AgentBackup/agent.service';
+import { AgentService } from '../Agent/agent.service';
 
 jest.mock('./agent.service.ts');
 describe('AgentService', () => {
