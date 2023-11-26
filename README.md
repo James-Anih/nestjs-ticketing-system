@@ -58,4 +58,4 @@ $ npm run test:cov
 
 ## Stay in touch
 
-- Author - [James Anih][jamesanih16@gmail.com]
+- Author - [**James Anih**][jamesanih16@gmail.com]
